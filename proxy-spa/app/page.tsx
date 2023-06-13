@@ -1,10 +1,10 @@
 'use client';
 
 export default function Home() {
-    
+  const host = () => process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://localhost"
   const codeChallenge = "MUugg7kY0qpeWz2pvl6P9CWZpYV_1EooTmKokZVGDsM";
   const queryString = new URLSearchParams({
-    redirect_url: "https://localhost/real-auth",
+    redirect_url: `${host()}/real-auth`,
     code_challenge: codeChallenge
   });
 
@@ -15,6 +15,7 @@ export default function Home() {
 
   return (
     <main>
+      {process.env.NODE_ENV}
       <button onClick={onClick}>Enter Proxy Login</button>
     </main>
   )
