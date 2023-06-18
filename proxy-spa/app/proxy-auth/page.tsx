@@ -1,22 +1,15 @@
 'use client';
 import { useSearchParams } from "next/navigation";
+import {client} from "../lib/proxy-auth"
 
-
-export default function ProxyAuth() {
+export default function ProxyLogin() {
 
   const searchParams = useSearchParams();
-  const authorizationCode = searchParams.get("code") as string;
-  
-
-  const onClick = () => {
-    const redirectUrl = localStorage.getItem ("redirect_url");
-    window.location.href = redirectUrl + "?code=" + authorizationCode;
-  };
+  client.handleClientAuthPage(searchParams);
 
   return (
     <main>
-      <button onClick={onClick}>Redirect to Real Auth</button>
-      <p>{authorizationCode}</p>
+      Authenticating...
     </main>
   )
 }
